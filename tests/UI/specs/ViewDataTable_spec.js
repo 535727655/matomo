@@ -109,7 +109,7 @@ describe("ViewDataTableTest", function () { // TODO: should remove Test suffix f
         expect(await page.screenshot({ fullPage: true })).to.matchImage('dimension_columns');
     });
 
-    it("should search in subtable dimensions even when they are displayed seperately", async function () {
+    it("should search in subtable dimensions even when they are displayed separately", async function () {
         await page.click('.dataTableAction.searchAction');
         await page.focus('.searchAction .dataTableSearchInput');
         await page.keyboard.type('Bing');
@@ -128,11 +128,12 @@ describe("ViewDataTableTest", function () { // TODO: should remove Test suffix f
         expect(await page.screenshot({ fullPage: true })).to.matchImage('flatten_search');
     });
 
-    it("search should still work when switching to back to separete dimensions", async function () {
+    it("search should still work when switching to back to separate dimensions", async function () {
         await page.click('.dropdownConfigureIcon');
         await page.click('.dataTableShowDimensions');
         await page.waitForNetworkIdle();
         await page.mouse.move(-10, -10);
+        await page.evaluate(() => document.activeElement.blur());
         expect(await page.screenshot({ fullPage: true })).to.matchImage('dimension_search');
     });
 
